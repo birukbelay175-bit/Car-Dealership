@@ -30,8 +30,24 @@ public class Dealership {
 
         for (Vehicle vehicle : inventory) {
 
-            if (vehicle.getPrice() >= min &&
-                    vehicle.getPrice() <= max) {
+            if (vehicle.getPrice() >= min
+                    && vehicle.getPrice() <= max) {
+
+                matchingVehicles.add(vehicle);
+            }
+        }
+
+        return matchingVehicles;
+    }
+
+    public ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model) {
+
+        ArrayList<Vehicle> matchingVehicles = new ArrayList<>();
+
+        for (Vehicle vehicle : inventory) {
+
+            if (vehicle.getMake().trim().equalsIgnoreCase(make.trim())
+                    && vehicle.getModel().trim().equalsIgnoreCase(model.trim())) {
 
                 matchingVehicles.add(vehicle);
             }
