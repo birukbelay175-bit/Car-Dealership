@@ -24,7 +24,19 @@ public class Dealership {
         inventory.add(vehicle);
     }
 
-    public ArrayList<Vehicle> getVehiclesByPrice() {
-        return null;
+    public ArrayList<Vehicle> getVehiclesByPrice(double min, double max) {
+
+        ArrayList<Vehicle> matchingVehicles = new ArrayList<>();
+
+        for (Vehicle vehicle : inventory) {
+
+            if (vehicle.getPrice() >= min &&
+                    vehicle.getPrice() <= max) {
+
+                matchingVehicles.add(vehicle);
+            }
+        }
+
+        return matchingVehicles;
     }
 }
