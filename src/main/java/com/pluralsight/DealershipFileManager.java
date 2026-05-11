@@ -2,6 +2,8 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class DealershipFileManager {
 
@@ -57,8 +59,34 @@ public class DealershipFileManager {
         return dealership;
     }
 
-    public void saveDealership() {
-        // leave empty
+    public void saveDealership(Dealership dealership) {
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH));
+
+            writer.write("D & B Used Cars|111 Old Benbrook Rd|817-555-5555");
+            writer.newLine();
+
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+
+                writer.write(
+                        vehicle.getVin() + "|" +
+                                vehicle.getYear() + "|" +
+                                vehicle.getMake() + "|" +
+                                vehicle.getModel() + "|" +
+                                vehicle.getVehicleType() + "|" +
+                                vehicle.getColor() + "|" +
+                                vehicle.getOdometer() + "|" +
+                                vehicle.getPrice()
+                );
+
+                writer.newLine();
+            }
+
+            writer.close();
+
+        } catch (Exception e) {
+            System.out.println("Error saving file: " + e.getMessage());
+        }
     }
 }
-
